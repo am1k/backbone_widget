@@ -53,6 +53,7 @@ define([
             this.$el.html(this.template(this.model.toJSON() ));
             this.stickit(this.model, this.bindings);
         },
+
         switchModel: function(model){
             this.unstickit();
             this.model = model;

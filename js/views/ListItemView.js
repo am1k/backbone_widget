@@ -14,7 +14,17 @@ define([
 
         model: new InfoModel,
 
+
         bindings: {
+            ':el': {
+                attributes: [{
+                    name: 'class',
+                    observe: 'active',
+                    onGet: function(val){
+                        return val ? 'active': ''
+                    }
+                }]
+            },
             '.red-line':{
                 attributes: [{
                    name: 'style',

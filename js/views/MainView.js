@@ -41,9 +41,7 @@ define([
         template: _.template(myTemplate),
 
         initialize: function(){
-
             this.render();
-
             return this;
         },
 
@@ -81,7 +79,6 @@ define([
                 }
             };
             checkModel();
-            console.log(currentModel);
 
             this.mainInfo.switchModel(mouseSelectModel);
         }

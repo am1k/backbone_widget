@@ -134,6 +134,7 @@
 }
 .active {
     opacity: 1;
+    background: green;
 }
 .type-value {
     display: inline-block;
