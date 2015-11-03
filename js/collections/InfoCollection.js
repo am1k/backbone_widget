@@ -4,7 +4,7 @@ define(['jquery', 'backbone', '../models/InfoModel'], function($, Backbone, Main
 
         model: MainModel,
 
-        initialize: function(){
+//        initialize: function(){
 //            this.on('change:active', function(model, val){
 //                if(!val){
 //                    return;
@@ -17,7 +17,7 @@ define(['jquery', 'backbone', '../models/InfoModel'], function($, Backbone, Main
 //                    return obj.cid !== model.cid;
 //                })[0].set('active', false);
 //            });
-        },
+//        },
 
         getActive: function(){
             return this.findWhere({active: true});

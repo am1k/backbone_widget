@@ -5,8 +5,10 @@ define([
     './ClockView',
     './ListItemView',
     './InfoView',
-    '../collections/InfoCollection'
-], function(Backbone, myTemplate, MainModel, ClockView, ListItemView, InfoView, InfoCollection){
+    '../collections/InfoCollection',
+    '../main'
+
+], function(Backbone, myTemplate, MainModel, ClockView, ListItemView, InfoView, InfoCollection, myRouter){
 
     var MainView = Backbone.View.extend({
         el: '#applications',
@@ -79,6 +81,8 @@ define([
                 }
             };
             checkModel();
+
+            Backbone.history.navigate(mouseSelectModel.get('name'));
 
             this.mainInfo.switchModel(mouseSelectModel);
         }

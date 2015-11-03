@@ -11,7 +11,7 @@ requirejs.config({
 });
 
 require([
-        '../views/MainView',
+        '../main',
         'stickit'
     ],
     function(App) {
