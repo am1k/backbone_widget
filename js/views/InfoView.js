@@ -1,7 +1,9 @@
 define([
     'backbone',
-    'text!../templates/info.html'
-], function(Backbone, myTemplate){
+    'text!../templates/info.html',
+    './MainView'
+
+], function(Backbone, myTemplate, MainView){
 
     var InfoView = Backbone.View.extend({
 

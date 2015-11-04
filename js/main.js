@@ -18,7 +18,7 @@ define([
 
         urlList: function(name){
             this.view = new MainView();
-            this.view.model.set('defaultName', name);
+            name && this.view.model.set('defaultName', name);
         }
 
     });

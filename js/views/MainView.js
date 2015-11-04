@@ -44,9 +44,12 @@ define([
         initialize: function(){
             this.listenTo(this.model, 'change:defaultName', function(model, val){
                this.collection.setActive(val);
-               this.changeRouterModel(val);
             });
-            this.listenTo(this.model, 'change', function(){});
+            this.listenTo(this.collection, 'change:active', function(model, val){
+               if(val){
+                   this.mainInfo.switchModel(model);
+               }
+            });
             this.render();
             return this;
         },
@@ -72,23 +75,16 @@ define([
         setActiveCurrency: function(e){
             var currentModel = this.collection.getActive();
             var mouseSelectModel = this.collection.at($(e.currentTarget).index());
-            var checkModel = function(){
-                if (currentModel === mouseSelectModel) {
-                    return mouseSelectModel
-                } else {
-                    currentModel.set('active', false);
-                    mouseSelectModel.set('active', true);
-                }
-            };
-            checkModel();
+
+            if (currentModel === mouseSelectModel) {
+                return mouseSelectModel
+            } else {
+                currentModel.set('active', false);
+                mouseSelectModel.set('active', true);
+            }
+
             Backbone.history.navigate(mouseSelectModel.get('name'));
-            this.mainInfo.switchModel(mouseSelectModel);
-        },
-
-        changeRouterModel: function(){
-            this.mainInfo.switchModel(this.collection.getActive());
         }
-
     });
 
     return MainView;
