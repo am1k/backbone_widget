@@ -13,12 +13,12 @@ define([
 
         initialize: function(){
             Backbone.history.start();
-            $('#applications').append((new MainView).$el);
+            $('#applications').append(this.view.$el);
         },
 
-        urlList: function(){
-            var mainView = new MainView;
-            mainView.trigger('change:switchModel');
+        urlList: function(name){
+            this.view = new MainView();
+            this.view.model.set('defaultName', name);
         }
 
     });

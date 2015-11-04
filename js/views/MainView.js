@@ -5,10 +5,9 @@ define([
     './ClockView',
     './ListItemView',
     './InfoView',
-    '../collections/InfoCollection',
-    '../main'
+    '../collections/InfoCollection'
 
-], function(Backbone, myTemplate, MainModel, ClockView, ListItemView, InfoView, InfoCollection, myRouter){
+], function(Backbone, myTemplate, MainModel, ClockView, ListItemView, InfoView, InfoCollection){
 
     var MainView = Backbone.View.extend({
         el: '#applications',
@@ -43,16 +42,18 @@ define([
         template: _.template(myTemplate),
 
         initialize: function(){
+            this.listenTo(this.model, 'change:defaultName', function(model, val){
+               this.collection.setActive(val);
+               this.changeRouterModel(val);
+            });
+            this.listenTo(this.model, 'change', function(){});
             this.render();
             return this;
         },
 
         render: function(){
-
             var docFrag = document.createDocumentFragment();
-
             this.currentModel = this.collection.getActive();
-
             this.$el.html(this.template(this.model));
             this.clock = new ClockView();
             this.mainInfo = new InfoView({
@@ -64,7 +65,6 @@ define([
             });
 
             this.$el.find('.list-view').append(docFrag);
-
             this.stickit(this.model);
             return this;
         },
@@ -81,10 +81,12 @@ define([
                 }
             };
             checkModel();
-
             Backbone.history.navigate(mouseSelectModel.get('name'));
-
             this.mainInfo.switchModel(mouseSelectModel);
+        },
+
+        changeRouterModel: function(){
+            this.mainInfo.switchModel(this.collection.getActive());
         }
 
     });

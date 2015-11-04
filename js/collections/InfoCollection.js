@@ -21,8 +21,16 @@ define(['jquery', 'backbone', '../models/InfoModel'], function($, Backbone, Main
 
         getActive: function(){
             return this.findWhere({active: true});
-        }
+        },
 
+        setActive: function(name){
+            if(name === null){
+                return;
+            } else {
+                this.getActive().set('active', false);
+                this.findWhere({name: name}).set('active', true);
+            }
+        }
     });
 
     return MainInformationCollection;
